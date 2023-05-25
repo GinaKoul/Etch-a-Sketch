@@ -128,12 +128,20 @@ function eventListeners(){
     childs = document.querySelectorAll(".container>div>*");
 
     childs.forEach(child =>{
+
         child.addEventListener('dragstart',function(){
+            drag_start=true;
+        });
+        child.addEventListener('touchstart',function(){
             drag_start=true;
         });
         child.addEventListener('dragend',function(){
             drag_start=false;
         });
+        child.addEventListener('touchend',function(){
+            drag_start=false;
+        });
+    
         child.addEventListener('dragover',function(e){
             if(drag_start){
                 randomColor();
@@ -142,18 +150,35 @@ function eventListeners(){
                 clear.classList.remove("shadow");
             }
         });
+        child.addEventListener('touchmove',function(e){
+            if(drag_start){
+                randomColor();
+                const newColor = e.target;
+                newColor.style.background = color;
+                clear.classList.remove("shadow");
+            }
+        });
+    
     });
 }
 
 let childs = document.querySelectorAll(".container>div>*");
 
 childs.forEach(child =>{
+
     child.addEventListener('dragstart',function(){
+        drag_start=true;
+    });
+    child.addEventListener('touchstart',function(){
         drag_start=true;
     });
     child.addEventListener('dragend',function(){
         drag_start=false;
     });
+    child.addEventListener('touchend',function(){
+        drag_start=false;
+    });
+
     child.addEventListener('dragover',function(e){
         if(drag_start){
             randomColor();
@@ -162,6 +187,15 @@ childs.forEach(child =>{
             clear.classList.remove("shadow");
         }
     });
+    child.addEventListener('touchmove',function(e){
+        if(drag_start){
+            randomColor();
+            const newColor = e.target;
+            newColor.style.background = color;
+            clear.classList.remove("shadow");
+        }
+    });
+
 });
 
 function randomColor(){
