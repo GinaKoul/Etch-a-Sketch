@@ -4,13 +4,15 @@ const colorPicker = document.querySelector("#colorpicker");
 
 const rainbowEffect = document.querySelector(".random");
 
+const erasor = document.querySelector(".erase");
+
 const clear = document.querySelector(".blank");
 
 const grid = document.querySelector(".slider");
 
 const gridSize = document.querySelector(".gSize");
 
-let mouse_down = false;
+let drag_start = false;
 
 let color = colorPicker.value;
 
@@ -126,14 +128,14 @@ function eventListeners(){
     childs = document.querySelectorAll(".container>div>*");
 
     childs.forEach(child =>{
-        child.addEventListener('mousedown',function(e){
-            mouse_down=true;
+        child.addEventListener('dragstart',function(){
+            drag_start=true;
         });
-        child.addEventListener('mouseup',function(){
-            mouse_down=false;
+        child.addEventListener('dragend',function(){
+            drag_start=false;
         });
-        child.addEventListener('mouseover',function(e){
-            if(mouse_down){
+        child.addEventListener('dragover',function(e){
+            if(drag_start){
                 randomColor();
                 const newColor = e.target;
                 newColor.style.background = color;
@@ -146,14 +148,14 @@ function eventListeners(){
 let childs = document.querySelectorAll(".container>div>*");
 
 childs.forEach(child =>{
-    child.addEventListener('mousedown',function(e){
-        mouse_down=true;
+    child.addEventListener('dragstart',function(){
+        drag_start=true;
     });
-    child.addEventListener('mouseup',function(){
-        mouse_down=false;
+    child.addEventListener('dragend',function(){
+        drag_start=false;
     });
-    child.addEventListener('mouseover',function(e){
-        if(mouse_down){
+    child.addEventListener('dragover',function(e){
+        if(drag_start){
             randomColor();
             const newColor = e.target;
             newColor.style.background = color;
@@ -178,6 +180,7 @@ function randomColor(){
 colorPicker.addEventListener('change',function(){
     color = colorPicker.value;
     rainbowEffect.classList.remove("shadow");
+    erasor.classList.remove("shadow");
     clear.classList.remove("shadow");
     rainbow = false;
 });
@@ -185,20 +188,25 @@ colorPicker.addEventListener('change',function(){
 rainbowEffect.addEventListener('click',function(){
     rainbow = true;
     rainbowEffect.classList.add("shadow");
+    erasor.classList.remove("shadow");
     clear.classList.remove("shadow");
+});
+
+erasor.addEventListener('click',function(){
+    erasor.classList.add("shadow");
+    rainbowEffect.classList.remove("shadow");
+    clear.classList.remove("shadow");
+    rainbow = false;
+    color = "#e1ceff";
 });
 
 clear.addEventListener('click',function(){
     clear.classList.add("shadow");
     rainbowEffect.classList.remove("shadow");
+    erasor.classList.remove("shadow");
     rainbow = false;
     childs.forEach(child => {
         child.style.background = "#e1ceff";
     })
     color = colorPicker.value;
 });
-
-
-
-
-

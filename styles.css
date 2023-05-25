@@ -26,7 +26,6 @@
 
 .settings{
     width: 200px;
-    height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -65,14 +64,14 @@
     border: none;
 }
 
-.color, .colors, .clear{
+.color, .colors, .clear, .erasor{
     display: flex;
     justify-content: flex-start;
     align-items: center;
     gap: 20px;
 }
 
-.random, .blank{
+.random, .blank, .erase{
     background-image: linear-gradient(to right, red , yellow);
     border-radius: 15px;
     width: 40px;
@@ -82,7 +81,7 @@
     margin-left: 5px;
 }
 
-.blank{
+.blank, .erase{
     background: rgb(255,254,246);
     background: linear-gradient(90deg, rgba(255,254,246,1) 0%, rgba(235,229,203,1) 100%);
 }
@@ -100,9 +99,10 @@ body{
     padding: 0;
     display: flex;
     flex-direction: column;
-    justify-content: end;
+    justify-content: center;
     background: rgb(202,188,232);
     background: linear-gradient(90deg, rgba(202,188,232,1) 53%, rgba(138,80,231,1) 100%);
+    min-height: 93vh;
 }
 
 .game{
@@ -110,7 +110,6 @@ body{
     flex-flow: row wrap;
     justify-content: start;
     align-items: center;
-    margin-bottom: 8%;
 }
 
 .board > h1{
