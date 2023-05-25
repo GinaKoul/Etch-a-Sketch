@@ -20,7 +20,7 @@ let rainbow = false;
 
 let numOfDivs = grid.value;
 
-let width = 400/numOfDivs;
+let width = 390/numOfDivs;
 
 let height = width;
 
